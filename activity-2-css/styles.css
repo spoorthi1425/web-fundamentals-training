@@ -1,55 +1,304 @@
-/* ==========================================================
-   Activity 2: style the Cartly page
-   Work MOBILE-FIRST: write base styles for a phone,
-   then add media queries for bigger screens.
-   Compare with mockups/desktop.png and mockups/mobile.png
-   ========================================================== */
 
-/* TODO 1: Design tokens
-   Create CSS variables on :root for colours, spacing and radius.
-   Suggested palette:
-     ink #222322   text #3a3d3a   muted #5f645f   background #f6f7f2
-     surface #ffffff   line #e2e5dc   accent #d3ff50   accent-dark #4d6b00 */
+/* TODO 1: CSS variables */
+
 :root {
-
+  --ink: #222322;
+  --text: #3a3d3a;
+  --muted: #5f645f;
+  --background: #f6f7f2;
+  --surface: #ffffff;
+  --line: #e2e5dc;
+  --accent: #d3ff50;
+  --accent-dark: #4d6b00;
 }
 
-/* TODO 2: Reset
-   - box-sizing: border-box on everything
-   - images: max-width: 100%; height: auto; display: block
-   - remove default margins on body, headings, paragraphs */
+/* TODO 2: Reset */
 
+* {
+  box-sizing: border-box;
+}
 
-/* TODO 3: Base typography (body font, size, line-height, colours) */
+body {
+  margin: 0;
+}
 
+h1, h2, h3, p {
+  margin: 0;
+}
 
-/* TODO 4: Buttons (.btn and .btn-primary), with :hover styles */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
 
+/* TODO 3: Basic typography */
 
-/* TODO 5: Header
-   - Flexbox: logo, nav and search in a row (wrap on mobile)
-   - position: sticky; top: 0  so it stays visible while scrolling */
+body {
+  font-family: Arial, sans-serif;
+  background: var(--background);
+  color: var(--text);
+  line-height: 1.6;
+}
 
+a {
+  color: var(--accent-dark);
+  text-decoration: none;
+}
 
-/* TODO 6: Hero
-   - dark background, white heading
-   - one column on mobile, two columns from 768px */
+/* TODO 4: Buttons */
 
+.btn {
+  display: inline-block;
+  padding: 10px 16px;
+  border: 1px solid var(--ink);
+  border-radius: 8px;
+  background: var(--ink);
+  color: white;
+  cursor: pointer;
+}
 
-/* TODO 7: Product grid
-   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr))
-   Cards: white, rounded, padding.
-   Images: aspect-ratio: 1 / 1; object-fit: cover */
+.btn:hover {
+  background: var(--accent);
+  color: var(--ink);
+}
 
+.btn-primary {
+  background: var(--accent);
+  color: var(--ink);
+}
 
-/* TODO 8: Newsletter form and footer */
+/* TODO 5: Header */
 
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding: 16px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--line);
+}
 
-/* TODO 9: Accessibility
-   - visible :focus-visible outline on links, buttons and inputs
-   - check text contrast with DevTools */
+.logo img {
+  width: 120px;
+  height: 40px;
+  object-fit: contain;
+}
 
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
 
-/* TODO 10: Media queries
-@media (min-width: 768px) { ... }
-@media (min-width: 1024px) { ... } */
+.nav-item {
+  color: var(--text);
+}
+
+.nav-item:hover {
+  color: var(--accent-dark);
+}
+
+.search {
+  display: flex;
+  gap: 8px;
+}
+
+.search label,
+.newsletter label {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+}
+
+.search input,
+.newsletter input {
+  min-width: 0;
+  padding: 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+
+/* TODO 6: Hero */
+
+.hero {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  padding: 32px 16px;
+  background: var(--ink);
+  color: white;
+}
+
+.hero h1 {
+  margin-bottom: 16px;
+  color: white;
+  font-size: 36px;
+  line-height: 1.2;
+}
+
+.hero .text {
+  margin-bottom: 24px;
+  color: #e2e5dc;
+}
+
+.hero img {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: contain;
+}
+
+/* TODO 7: Product cards */
+
+.section {
+  padding: 40px 16px;
+}
+
+.heading-text {
+  margin-bottom: 8px;
+}
+
+.sub-heading-text {
+  margin-bottom: 24px;
+  color: var(--muted);
+}
+
+.products {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+.card {
+  padding: 16px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  transition: transform 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+}
+
+.card img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.card-category {
+  margin-top: 12px;
+  color: var(--muted);
+}
+
+.card-title {
+  margin: 8px 0;
+}
+
+.card-price {
+  font-weight: bold;
+}
+
+.card-rating {
+  margin: 8px 0;
+  color: var(--accent-dark);
+}
+
+.card .btn {
+  width: 100%;
+}
+
+.card-link {
+  margin-top: 12px;
+  text-align: center;
+}
+
+/* TODO 8: Newsletter and footer */
+
+.newsletter {
+  padding: 40px 16px;
+  background: var(--accent);
+  text-align: center;
+}
+
+.newsletter .text {
+  margin: 12px 0;
+}
+
+.newsletter form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.newsletter input {
+  background: white;
+}
+
+.footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 24px;
+  padding: 24px 16px;
+  background: var(--ink);
+  color: white;
+}
+
+.footer a {
+  color: white;
+}
+
+/* TODO 9: Keyboard focus */
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+  outline: 3px solid var(--accent-dark);
+  outline-offset: 3px;
+}
+
+/* TODO 10: Responsive design */
+
+@media (min-width: 768px) {
+  .header {
+    flex-wrap: nowrap;
+  }
+
+  .hero {
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 48px 5%;
+  }
+
+  .section,
+  .newsletter {
+    padding: 48px 5%;
+  }
+
+  .products {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .header {
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+
+  .products {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
